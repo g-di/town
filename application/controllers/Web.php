@@ -477,4 +477,44 @@ class Web extends Base
             $this->load->view('/layout/layout', $data);
         }
     }
+
+    /**
+     * 环境人文
+     */
+    public function environment(){
+        $data['title'] = '北京基金小镇 - 环境人文';
+        //分享内容
+        $data['signPackage'] = $this->shareapi();
+        $share = $this->website_channel_model->get_channel(array('ChannelID' => 5));
+        $data['sharedesc'] = $share['ChannelDescription'];
+//        $data['bodyHtml'] = $this->load->view('/web/contact', $data, true);
+        $data['bodyHtml'] = '环境人文';
+        $this->load->view('/layout/layout', $data);
+    }
+    /**
+     * 小镇政策
+     */
+    public function enroll(){
+        $data['title'] = '小镇服务 - 小镇政策';
+        //分享内容
+        $data['signPackage'] = $this->shareapi();
+        $share = $this->website_channel_model->get_channel(array('ChannelID' => 11));
+        $data['sharedesc'] = $share['ChannelDescription'];
+//        $data['bodyHtml'] = $this->load->view('/web/contact', $data, true);
+        $data['bodyHtml'] = '小镇政策';
+        $this->load->view('/layout/layout', $data);
+    }
+    /**
+     * 我要入驻
+     */
+    public function consult(){
+        $data['title'] = '小镇服务 - 我要入驻';
+        //分享内容
+        $data['signPackage'] = $this->shareapi();
+        $share = $this->website_channel_model->get_channel(array('ChannelID' => 12));
+        $data['sharedesc'] = $share['ChannelDescription'];
+//        $data['bodyHtml'] = $this->load->view('/web/contact', $data, true);
+        $data['bodyHtml'] = '我要入驻';
+        $this->load->view('/layout/layout', $data);
+    }
 }
