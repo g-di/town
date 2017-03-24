@@ -16,7 +16,6 @@ class Web extends Base
     function __construct()
     {
         parent::__construct();
-        $this->load->model('website_channel_model');//微信分享
         $this->load->model('news_model');//新闻
         $this->load->model('website_ad_model');//轮播图
         $this->load->model('so_company_fund_model');//小镇指数
@@ -32,6 +31,7 @@ class Web extends Base
      */
     public function introduction()
     {
+        $this->visit(4);
         $data['sharetit'] = $data['title'] = '北京基金小镇 - 简介';
         //轮播图
         $where = array(
@@ -55,6 +55,7 @@ class Web extends Base
      */
     public function setting()
     {
+        $this->visit(7);
         $data['sharetit'] = $data['title'] = '北京基金小镇 - 小镇指数';
         //轮播图
         $where = array(
@@ -102,6 +103,7 @@ class Web extends Base
      */
     public function activities()
     {
+        $this->visit(10);
         $data['sharetit'] = $data['title'] = '北京基金小镇 - 小镇活动';
         //轮播图
         $where = array(
@@ -146,6 +148,7 @@ class Web extends Base
             );
             $info = $this->news_model->get_news($where, 'NewsPublishTime desc', '1');
             $info = $info[0];
+            $this->visit($info['NewsCat'],$i);
             if ($info['news_link_to']) {
                 header('Location: ' . $info['news_link_to']);
                 return;
@@ -193,6 +196,7 @@ class Web extends Base
             $data['bodyHtml'] = $this->load->view('/layout/layouts', $data, true);
             $this->load->view('/layout/layout', $data);
         } else {
+            $this->visit(6);
             //轮播图
             $where = array(
                 'catid' => 30,
@@ -261,6 +265,7 @@ class Web extends Base
                 header('Location: ' . getenv('HTTP_REFERER'));
                 break;
         }
+        $this->visit($i);
         //视频报道
         $limit = '50';
         $data['info'] = $this->news_model->get_news($where, 'NewsPublishTime desc', $limit);
@@ -280,6 +285,7 @@ class Web extends Base
      */
     public function quantization()
     {
+        $this->visit(63);
         $data['sharetit'] = $data['title'] = '北京基金小镇 - 中国量化基金指数';
         //分享内容
         $data['signPackage'] = $this->shareapi();
@@ -297,6 +303,7 @@ class Web extends Base
      */
     public function policy()
     {
+        $this->visit(31);
         $data['sharetit'] = $data['title'] = '基金圈 - 政策';
         //轮播图
         $where = array(
@@ -328,6 +335,7 @@ class Web extends Base
      */
     public function industry()
     {
+        $this->visit(8);
         $data['sharetit'] = $data['title'] = '基金圈 - 资讯';
         //轮播图
         $where = array(
@@ -372,6 +380,7 @@ class Web extends Base
      */
     public function pechart()
     {
+        $this->visit(9);
         $data['sharetit'] = $data['title'] = '基金圈 - 中国基金指数';
         $where = array();
         $order = 'update_date desc';
@@ -431,6 +440,7 @@ class Web extends Base
      */
     public function contact()
     {
+        $this->visit(13);
         $data['sharetit'] = $data['title'] = '小镇服务 - 联系小镇';
         //轮播图
         $where = array(
@@ -482,6 +492,7 @@ class Web extends Base
      * 环境人文
      */
     public function environment(){
+        $this->visit(5);
         $data['title'] = '北京基金小镇 - 环境人文';
         //分享内容
         $data['signPackage'] = $this->shareapi();
@@ -495,6 +506,7 @@ class Web extends Base
      * 小镇政策
      */
     public function enroll(){
+        $this->visit(11);
         $data['title'] = '小镇服务 - 小镇政策';
         //分享内容
         $data['signPackage'] = $this->shareapi();
@@ -508,6 +520,7 @@ class Web extends Base
      * 我要入驻
      */
     public function consult(){
+        $this->visit(12);
         $data['title'] = '小镇服务 - 我要入驻';
         //分享内容
         $data['signPackage'] = $this->shareapi();

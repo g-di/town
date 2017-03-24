@@ -22,4 +22,14 @@ class Website_channel_model extends Base_model
                 ->get()
                 ->row_array();
     }
+
+    public function get_parentid($ChannelID)
+    {
+        return
+            $this->db->select('ChannelID,ChannelParentID')
+                ->from(static::channel)
+                ->where(array('ChannelID' => $ChannelID))
+                ->get()
+                ->row_array();
+    }
 }
